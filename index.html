@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#f6eedf">
+<title>Sweet Pea Floral | American Fork, Utah</title>
+<meta name="description" content="Handmade flowers from a family shop on Main Street in American Fork. Same-day delivery across Utah County when you order by noon.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 29C9 22 6 17 6 12a10 10 0 0 1 20 0c0 5-3 10-10 17z' fill='%23a4527c'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=IM+Fell+English:ital@0;1&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body class="home">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></symbol>
+<symbol id="i-out" viewBox="0 0 24 24"><path d="M8 16 16 8M9 8h7v7"/></symbol>
+<symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+<symbol id="sprig" viewBox="0 0 120 210"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M62 206C54 160 72 120 58 78 50 52 64 30 60 8"/><path d="M60 118c16-3 26-13 20-22-5-7-14-1-9 6"/><path d="M57 70c-15-2-24-11-19-19 4-6 12-1 8 5"/></g><g fill="currentColor" opacity=".85"><path d="M60 170C40 166 26 152 24 138c18 2 32 14 36 32z"/><path d="M63 150c18-6 30-20 30-34-17 3-29 16-30 34z"/><path d="M58 104C40 102 28 90 26 78c16 1 29 11 32 26z"/><path d="M60 52c12-6 19-17 18-27-12 4-19 14-18 27z"/></g><g><ellipse cx="88" cy="88" rx="13" ry="10" fill="#c9868c"/><ellipse cx="82" cy="94" rx="8" ry="7" fill="#a4527c"/><ellipse cx="30" cy="46" rx="12" ry="9" fill="#d9a5ad"/><ellipse cx="36" cy="52" rx="7" ry="6" fill="#a4527c"/><ellipse cx="62" cy="10" rx="8" ry="9" fill="#c9868c"/></g></symbol>
+</defs></svg>
+<div class="amb" aria-hidden="true"></div>
+
+<header class="top wrap">
+  <a class="word" href="./"><img src="img/logo.webp" alt="Sweet Pea Floral" width="350" height="205"></a>
+  <a class="live" href="#visit"><i class="dot" data-live="dot"></i><span><span class="pre" data-live="pre"></span><span data-live="open">American Fork</span></span></a>
+  <a class="btn sm" data-tel aria-label="Call the shop"><svg class="i"><use href="#i-phone"/></svg><span data-phone></span></a>
+</header>
+
+<main>
+  <section class="ask wrap" id="ask"></section>
+  <section class="sec wrap" id="flowers"></section>
+  <section class="sec wrap" id="how"></section>
+</main>
+<footer><div class="wrap">
+  <span>Sweet Pea Floral · 185 West Main Street, American Fork, UT 84003</span>
+  <a href="https://www.instagram.com/sweet_pea_floral/" target="_blank" rel="noopener">Instagram</a>
+  <a href="https://www.facebook.com/sweetpeafloralandgift" target="_blank" rel="noopener">Facebook</a>
+  <span>Design prototype. Ordering opens the shop's current store.</span>
+</div></footer>
+<div class="detail" id="detail" role="dialog" aria-modal="true" aria-label="Arrangement" hidden></div>
+
+<script src="assets/products.js"></script>
+<script>
+(function(){
+'use strict';
+var SP=window.SP,P=SP.products,ROOT=new URL('.',location.href).href,IMG=ROOT,by={};P.forEach(function(p){by[p.slug]=p});
+var detail=document.getElementById('detail'),main=document.querySelector('main'),root=document.documentElement;
+var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+var tel='tel:+1'+SP.phone.replace(/\D/g,''),DC=SP.designersChoice;
+function has(p,t){return p.tags.indexOf(t)>-1}
+function sec(s){return function(p){return p.tags[0]===s}}
+var LOOK={best:'Best sellers',soft:'Soft & pastel',bright:'Bright',country:'Country',fall:'Fall colors',service:'For the service',home:'For the home',casket:'Casket sprays',wreath:'Wreaths',corsage:'Corsages',bout:'Boutonnieres'};
+var EV=['best','soft','bright','country','fall'];
+/* Why someone is here. Each reason filters the shop's real designs. */
+var OCC=[
+ {k:'birthday',tile:'A birthday',sub:'Make their day',h:'Flowers for a birthday',lead:'Pick a look if you like, or just scroll. Every one is made by hand.',f:function(p){return has(p,'birthday')},looks:EV},
+ {k:'anniversary',tile:'An anniversary',sub:'Or just for love',h:'Flowers for an anniversary',lead:'Our designs made for the occasion. Want something only for them? Designer\'s Choice is made for that.',f:function(p){return has(p,'anniversary')},looks:[]},
+ {k:'because',tile:'Just because',sub:'Thank you, get well, thinking of you',h:'Just because',lead:'No reason needed. Pick a look and a budget.',f:sec('everyday'),looks:EV},
+ {k:'sympathy',tile:'Sympathy',sub:'For the service or the home',h:'Sympathy flowers',lead:'For the service and for the home. If you are not sure what is right, call us at '+SP.phone+' and we will help you choose.',f:sec('sympathy'),looks:['home','service','casket','wreath'],amb:['#41506b','#5d5478','#2f5650']},
+ {k:'dance',tile:'A dance',sub:'Corsages and boutonnieres',h:'Flowers for the dance',lead:'Corsages and boutonnieres, made to match. Pick up Friday 10 to 4 or Saturday 10 to 2.',f:sec('dance'),looks:['corsage','bout']},
+ {k:'plants',tile:'Plants & gifts',sub:'Something that lasts',h:'Plants & gifts',lead:'Potted plants and gifts that keep going after the flowers would.',f:sec('plants'),looks:[]}
+];
+var ALL={k:'all',h:'Everything we make',lead:'Every design, in one place.',f:function(){return true},looks:[]};
+var FAV={k:'',h:'Best sellers',lead:'Not sure yet? Start with these, or pick a reason above.',f:function(p){return has(p,'best')},looks:[]};
+var FALL={k:'fall',tile:'Fall colors',h:'Fall colors',lead:'The season in a vase, while it lasts.',f:function(p){return has(p,'fall')},looks:[]};
+var inSeason=[9,10,11].indexOf(+new Intl.DateTimeFormat('en-US',{timeZone:SP.tz,month:'numeric'}).format(new Date()))>-1;
+var occBy={all:ALL,fall:FALL},usedPic={};OCC.forEach(function(o){occBy[o.k]=o;o.items=P.filter(o.f);
+  if(o.k==='sympathy')o.items=o.items.filter(function(p){return has(p,'home')}).concat(o.items.filter(function(p){return !has(p,'home')}));
+  o.pic=o.items.filter(function(p){return !p.oos&&!usedPic[p.slug]&&(o.k!=='because'||has(p,'best'))})[0]||o.items[0];usedPic[o.pic.slug]=1});
+var DEF=['#b3175f','#5b3df5','#f4a13c'],baseAmb=DEF;
+function esc(s){return String(s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function $(n){return '$'+(n%1?n.toFixed(2):n)}
+function low(p){return Math.min.apply(null,p.tiers.length?p.tiers.map(function(t){return t[1]}):[p.price])}
+function from(p){return (p.tiers.length>1?'from ':'')+$(low(p))}
+function ico(n){return '<svg class="i" aria-hidden="true"><use href="#i-'+n+'"/></svg>'}
+function sat(h){var r=parseInt(h.slice(1,3),16),g=parseInt(h.slice(3,5),16),b=parseInt(h.slice(5,7),16),mx=Math.max(r,g,b),mn=Math.min(r,g,b);return mx?(mx-mn)/mx*(.4+mx/425):0}
+function setAmb(c,keep){c=c&&c.length?(keep?c:c.slice().sort(function(a,b){return sat(b)-sat(a)})):DEF;root.style.setProperty('--c1',c[0]);root.style.setProperty('--c2',c[1]||c[0]);root.style.setProperty('--c3',c[2]||c[0])}
+
+/* live shop status, in the shop's own time zone */
+var DAYS=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+function nowMT(){var o={};new Intl.DateTimeFormat('en-US',{timeZone:SP.tz,weekday:'long',hour:'numeric',minute:'numeric',hourCycle:'h23'}).formatToParts(new Date()).forEach(function(p){o[p.type]=p.value});return{d:DAYS.indexOf(o.weekday),m:(+o.hour%24)*60+ +o.minute}}
+function hr(h){return (h>12?h-12:h)+(h>=12?' pm':' am')}
+function nextOpen(d){for(var i=1;i<=7;i++){var k=(d+i)%7;if(SP.hours[k])return{k:k,i:i}}}
+function status(){
+  var n=nowMT(),h=SP.hours[n.d],r={today:n.d};
+  if(h&&n.m>=h[0]*60&&n.m<h[1]*60){r.open=true;r.head='Open now';r.line='Open until '+hr(h[1])}
+  else if(h&&n.m<h[0]*60){r.head='Opens at '+hr(h[0]);r.line='Opens '+hr(h[0])}
+  else{var x=nextOpen(n.d);r.head='Closed';r.line='Opens '+(x.i===1?'tomorrow':DAYS[x.k].slice(0,3))+' '+hr(SP.hours[x.k][0])}
+  if(h&&n.m<720){var left=720-n.m,t=(left>=60?Math.floor(left/60)+' h ':'')+(left%60)+' min';r.sameDay=true;r.deliv='Order in the next '+t+' for delivery today.';r.pre='Delivery ';r.line='today · order in '+t.replace(' h ','h ').replace(' min','m')}
+  else{var y=nextOpen(n.d);r.deliv=(h?'Past noon? Call and we will check on today. ':'')+'Next delivery day: '+(y.i===1?'tomorrow':DAYS[y.k])+'.'}
+  return r;
+}
+function tick(){
+  var s=status();
+  document.querySelectorAll('[data-live]').forEach(function(e){var k=e.dataset.live;
+    if(k==='dot')e.classList.toggle('on',!!(s.open||s.sameDay));else if(k==='open')e.textContent=s.line;else if(k==='pre')e.textContent=s.pre||'';else if(k==='head')e.textContent=s.head;else if(k==='deliv')e.textContent=s.deliv});
+  document.querySelectorAll('.hrs li').forEach(function(li){li.classList.toggle('now',li.dataset.d.split(',').indexOf(String(s.today))>-1)});
+}
+setInterval(tick,30000);
+
+/* 1. What are the flowers for? */
+function ask(){
+  document.getElementById('ask').innerHTML='<div class="hello"><svg class="sprig" viewBox="0 0 120 210" aria-hidden="true"><use href="#sprig"/></svg><div><p class="mono">Hello, come on in</p><img class="logo" src="'+IMG+'img/logo.webp" alt="Sweet Pea Floral" width="350" height="205"><h1>Flowers from our cozy shop on Main Street, made by hand and brought to their door.</h1></div><svg class="sprig r" viewBox="0 0 120 210" aria-hidden="true"><use href="#sprig"/></svg></div>'+
+  '<p class="prompt">pick an occasion, or just have a wander <svg viewBox="0 0 46 34" aria-hidden="true"><path d="M3 4c14-2 28 4 32 20M27 20l8 6 5-9"/></svg></p>'+
+  '<div class="tiles">'+OCC.map(function(o){return '<a class="tile ph" href="#/for/'+o.k+'"><img src="'+IMG+o.pic.img+'" alt=""><div><h2>'+o.tile+'</h2><p>'+o.sub+'</p></div></a>'}).join('')+
+  '<a class="tile" href="'+DC.url+'" target="_blank" rel="noopener"><div><p>not sure?</p><h2>Let us design it</h2><p>tell us the occasion and budget, from $'+DC.from_+'</p></div></a>'+
+  '<a class="tile" href="https://sweetpeafloralandgift.com/contact/" target="_blank" rel="noopener"><div><p>something bigger?</p><h2>A wedding or event</h2><p>send us a note and we will talk it through</p></div></a>'+
+  '</div><p class="under">'+(inSeason?'<a href="#/for/fall">In season now: fall colors</a>':'')+'<a href="#/for/all">See everything we make</a><span>or call <a href="'+tel+'">'+SP.phone+'</a> and we will help you choose</span></p>';
+}
+
+/* 2. The flowers for that */
+var st={occ:FAV,look:null,budget:0};
+var BUD=[['Any budget'],['Under $60',0,59.99],['$60 to $100',60,100],['Over $100',100.01,1e9]];
+function list(){
+  var b=BUD[st.budget];
+  var L=st.occ.items||(st.occ.items=P.filter(st.occ.f));
+  L=L.filter(function(p){var l=low(p);return (!st.look||has(p,st.look))&&(!st.budget||(l>=b[1]&&l<=b[2]))});
+  return L.filter(function(p){return !p.oos}).concat(L.filter(function(p){return p.oos}));
+}
+function card(p,i){return '<a class="card" href="'+ROOT+'p/'+p.slug+'/" data-slug="'+p.slug+'" style="animation-delay:'+Math.min(i,10)*35+'ms"><span class="ph"><img loading="lazy" src="'+IMG+p.img+'" alt="'+esc(p.name)+'"></span>'+(p.oos?'<span class="flag">Sold out</span>':'')+'<div class="cap"><b>'+esc(p.name)+'</b><span>'+from(p)+'</span></div></a>'}
+function dcCard(){return '<a class="card dc" href="'+DC.url+'" target="_blank" rel="noopener"><p class="mono">can\'t decide?</p><div><h3>We\'ll design it for you</h3><p>Tell us the occasion and your budget. From $'+DC.from_+'.</p></div></a>'}
+function paintGrid(){
+  var L=list(),h=L.map(card);
+  if(L.length)h.splice(Math.min(3,h.length),0,dcCard());
+  document.getElementById('count').textContent=L.length+(L.length===1?' design':' designs');
+  document.getElementById('grid').innerHTML=L.length?'<div class="grid">'+h.join('')+'</div>':
+    '<div class="empty"><h3>Nothing in that mix right now.</h3><p>Try another look or budget, or let us design it for you.</p><div class="acts"><button class="btn gl" type="button" data-reset>Show them all</button><a class="btn" href="'+DC.url+'" target="_blank" rel="noopener">Designer\'s Choice from $'+DC.from_+'</a></div></div>';
+  document.querySelectorAll('[data-look]').forEach(function(b){b.setAttribute('aria-pressed',st.look===b.dataset.look)});
+  document.querySelectorAll('[data-budget]').forEach(function(b){b.setAttribute('aria-pressed',st.budget===+b.dataset.budget)});
+}
+function flowers(){
+  var o=st.occ,items=o.items||(o.items=P.filter(o.f));
+  var looks=(o.looks||[]).filter(function(t){return items.some(function(p){return has(p,t)})});
+  var prices=items.map(low),buds=BUD.map(function(b,i){return i===0||prices.some(function(l){return l>=b[1]&&l<=b[2]})});
+  document.getElementById('flowers').innerHTML=
+  '<nav class="occs" aria-label="Reason">'+OCC.map(function(x){return '<a class="pill" href="#/for/'+x.k+'"'+(x===o?' aria-current="true"':'')+'>'+x.tile+'</a>'}).join('')+(inSeason?'<a class="pill" href="#/for/fall"'+(o===FALL?' aria-current="true"':'')+'>Fall colors</a>':'')+'<a class="pill" href="#/for/all"'+(o===ALL?' aria-current="true"':'')+'>Everything</a></nav>'+
+  '<h2 class="big">'+o.h+'</h2><p class="lead">'+o.lead+'</p>'+
+  '<div class="bar">'+(looks.length?'<div class="r"><span class="mono lab">Look</span>'+looks.map(function(t){var ex=items.filter(function(p){return has(p,t)&&!p.oos})[0];return '<button class="pill" type="button" data-look="'+t+'" aria-pressed="false">'+(ex?'<img src="'+IMG+ex.img+'" alt="">':'')+LOOK[t]+'</button>'}).join('')+'</div>':'')+
+  '<div class="r"><span class="mono lab">Budget</span>'+BUD.map(function(b,i){return buds[i]?'<button class="pill" type="button" data-budget="'+i+'" aria-pressed="false">'+b[0]+'</button>':''}).join('')+'<span class="count mono" id="count"></span></div></div>'+
+  '<div id="grid"></div>';
+  paintGrid();
+  baseAmb=o.amb||(o.pic?o.pic.colors:DEF);if(detail.hidden)setAmb(baseAmb,!!o.amb);
+}
+
+/* 4. How it goes, and the shop */
+function how(){
+  document.getElementById('how').innerHTML='<p class="mono">from our bench to their door</p><h2 class="big">How it goes</h2>'+
+  '<div class="steps">'+[
+    ['Choose, or let us','Pick a design and a size. Or give us a budget and we will design it.'],
+    ['Tell us where and when','Order by noon and it goes out the same day. After noon, call and we will check.'],
+    ['We make it by hand','Arranged in the shop on Main Street. '+SP.policy.substitution],
+    ['Delivered, or picked up','We deliver across Utah County, or you can pick it up at the shop on Main Street.']
+  ].map(function(s,i){return '<div class="box"><span class="n">'+(i+1)+'</span><div><h3>'+s[0]+'</h3><p>'+esc(s[1])+'</p></div></div>'}).join('')+'</div>'+
+  '<div class="shop" id="visit">'+
+    '<div class="box chalk"><p class="mono">The shop right now</p><p class="big"><i class="dot" data-live="dot"></i><span data-live="head"></span></p><p data-live="deliv" style="margin-top:12px"></p>'+
+      '<ul class="hrs"><li data-d="1,2,3,4,5"><span>Monday to Friday</span><span>10 am – 4 pm</span></li><li data-d="6"><span>Saturday</span><span>10 am – 2 pm</span></li><li data-d="0"><span>Sunday</span><span>Closed</span></li></ul>'+
+      '<p class="fine">Mountain Time. Closed most major holidays.</p>'+
+      '<div class="acts"><a class="btn" href="'+tel+'">'+ico('phone')+SP.phone+'</a><a class="btn gl" href="https://www.google.com/maps/search/?api=1&query=Sweet+Pea+Floral+185+West+Main+Street+American+Fork+UT" target="_blank" rel="noopener">Directions '+ico('out')+'</a></div></div>'+
+    '<div class="box"><p class="mono">Since 2008</p><h3 style="margin-top:12px;font-size:clamp(1.8rem,3vw,2.8rem)">A mother and daughter, on Main Street.</h3><p style="margin-top:14px">Sweet Pea Floral was started by Tina Monson and Amanda Monson. It is family owned, with more than 30 years of experience between them, at 185 West Main Street.</p>'+
+      '<p class="mono" style="margin-top:28px">We deliver to</p><div class="towns">'+SP.towns.map(function(t){return '<span>'+t+'</span>'}).join('')+'</div>'+
+      '<div class="acts"><a class="btn gl sm" href="'+SP.subscription.url+'" target="_blank" rel="noopener">Flower subscriptions from $'+SP.subscription.from_+' '+ico('out')+'</a></div></div>'+
+  '</div>';
+}
+
+/* 3. One arrangement, and what happens next */
+function defTier(p){var d=0;p.tiers.forEach(function(t,i){if(t[1]===p.price)d=i});return d}
+function fillDetail(p){
+  var s=p.tags[0],d=defTier(p),stt=status();
+  var rel=P.filter(function(x){return x!==p&&x.tags[0]===s&&!x.oos}).map(function(x){return [x.tags.filter(function(t){return has(p,t)}).length-Math.abs(low(x)-low(p))/400,x]}).sort(function(a,b){return b[0]-a[0]}).slice(0,3);
+  var kick=[{everyday:'Everyday flowers',sympathy:'Sympathy & funeral',dance:'Dance flowers',plants:'Plants & gifts'}[s]].concat(p.tags.slice(1).filter(function(t){return LOOK[t]}).map(function(t){return LOOK[t]})).join(' · ');
+  var next=s==='dance'?['The order button takes you to this design in our store. Choose your size there.','Choose pickup and pick the day.','Pick it up at the shop Friday 10 to 4 or Saturday 10 to 2.']:
+    ['The order button takes you to this design in our store. Choose your size there.','Choose delivery or pickup and pick the day. You can add something special if you like.','We make it by hand, then deliver it or have it ready for you at the shop. '+SP.policy.substitution];
+  detail.innerHTML='<div class="d-panel"><button class="rnd d-x" type="button" data-close aria-label="Close">'+ico('x')+'</button>'+
+  '<div class="d-img"><img src="'+IMG+p.img+'" alt="'+esc(p.name)+'"></div>'+
+  '<div class="d-body"><p class="mono">'+esc(kick)+'</p><h2>'+esc(p.name)+'</h2>'+
+  '<p class="price"><span id="pr">'+$(p.tiers.length?p.tiers[d][1]:p.price)+'</span><small id="tn">'+(p.oos?'Sold out right now':p.tiers.length>1?esc(p.tiers[d][0]):'')+'</small></p>'+
+  '<p class="desc">'+esc(p.desc)+'</p>'+
+  (p.tiers.length>1?'<div class="pills" role="radiogroup" aria-label="Size">'+p.tiers.map(function(t,i){return '<label><input type="radio" name="tier" data-tier="'+esc(t[0])+'" value="'+t[1]+'"'+(i===d?' checked':'')+'><span>'+esc(t[0])+'<b>'+$(t[1])+'</b></span></label>'}).join('')+'</div>':'')+
+  (s==='dance'?'':'<p class="today"><i class="dot'+(stt.sameDay?' on':'')+'"></i><span>'+esc(stt.deliv)+'</span></p>')+
+  '<div class="acts">'+(p.oos?'<a class="btn" href="'+tel+'">'+ico('phone')+'Call to ask about this one</a>':'<a class="btn" href="'+p.url+'" target="_blank" rel="noopener">Order this '+ico('out')+'</a><a class="btn gl" href="'+tel+'">'+ico('phone')+'Call instead</a>')+'</div>'+
+  '<p class="mono" style="margin-top:30px">What happens next</p><ol class="next">'+next.map(function(n){return '<li><span>'+esc(n)+'</span></li>'}).join('')+'</ol>'+
+  (rel.length?'<p class="mono" style="margin-top:26px">More like this</p><div class="rel">'+rel.map(function(r){var x=r[1];return '<a href="'+ROOT+'p/'+x.slug+'/" data-swap="'+x.slug+'"><img loading="lazy" src="'+IMG+x.img+'" alt="">'+esc(x.name)+'<span>'+from(x)+'</span></a>'}).join('')+'</div>':'')+
+  '</div></div>';
+  detail.hidden=false;main.inert=true;document.body.classList.add('lock');setAmb(p.colors);
+  document.title=p.name+' | Sweet Pea Floral';
+}
+detail.addEventListener('change',function(e){var r=e.target;if(r.name!=='tier')return;document.getElementById('pr').textContent=$(+r.value);document.getElementById('tn').textContent=r.dataset.tier});
+function srcImg(slug){var e=main.querySelector('[data-slug="'+slug+'"] img');if(!e)return null;var r=e.getBoundingClientRect();return r.bottom>0&&r.top<innerHeight?e:null}
+var shown=null;
+function openDetail(p){
+  if(shown){shown=p;fillDetail(p);return}
+  var img=srcImg(p.slug);shown=p;
+  if(img&&document.startViewTransition&&!reduce){img.style.viewTransitionName='hero';document.startViewTransition(function(){img.style.viewTransitionName='';fillDetail(p)})}
+  else fillDetail(p);
+  setTimeout(function(){var x=detail.querySelector('[data-close]');if(x)x.focus({preventScroll:true})},60);
+}
+function hideDetail(){
+  if(!shown)return;var img=srcImg(shown.slug),big=detail.querySelector('.d-img img');shown=null;
+  function done(named){if(big)big.style.viewTransitionName='none';detail.hidden=true;detail.innerHTML='';main.inert=false;document.body.classList.remove('lock');setAmb(baseAmb,!!st.occ.amb);
+    document.title='Sweet Pea Floral | American Fork, Utah';
+    if(named&&img){img.style.viewTransitionName='hero';setTimeout(function(){img.style.viewTransitionName=''},700)}}
+  if(img&&document.startViewTransition&&!reduce)document.startViewTransition(function(){done(true)});else done(false);
+}
+var pushed=false,base='#/',cur=null;
+function leaveDetail(){if(pushed){pushed=false;history.back()}else{history.replaceState(null,'',ROOT+(base==='#/'?'':base));hideDetail()}}
+detail.addEventListener('click',function(e){if(e.target===detail)leaveDetail()});
+
+/* routing: #/ , #/for/<reason> , #/p/<design> */
+function show(h,scroll){
+  cur=h;base=h;var m=h.match(/^#\/for\/([\w-]+)/),o=m&&occBy[m[1]];
+  st={occ:o||FAV,look:null,budget:0};flowers();tick();
+  if(scroll){if(o)document.getElementById('flowers').scrollIntoView();else scrollTo(0,0)}
+}
+function route(first){
+  var h=location.hash||'#/';
+  if(h==='#visit'||h==='#flowers'||h==='#how')return;
+  var m=h.match(/^#\/p\/([\w-]+)/);
+  if(m){location.replace(ROOT+'p/'+m[1]+'/');return}
+  hideDetail();
+  if(h!==cur)show(h,first!==true||/^#\/for\//.test(h));
+}
+addEventListener('hashchange',function(){route()});
+addEventListener('popstate',function(){var m=location.pathname.match(/\/p\/([\w-]+)\/?$/);if(m&&by[m[1]]){pushed=true;openDetail(by[m[1]])}else{pushed=false;hideDetail()}});
+document.addEventListener('click',function(e){
+  var t=e.target.closest('[data-look],[data-budget],[data-close],[data-reset],[data-swap],a.card[data-slug]');if(!t)return;
+  if(t.dataset.look){st.look=st.look===t.dataset.look?null:t.dataset.look;paintGrid()}
+  else if(t.dataset.budget){st.budget=+t.dataset.budget;paintGrid()}
+  else if('reset' in t.dataset){st.look=null;st.budget=0;paintGrid()}
+  else if('close' in t.dataset)leaveDetail();
+  else if('swap' in t.dataset){if(e.metaKey||e.ctrlKey||e.shiftKey)return;e.preventDefault();history.replaceState({p:t.dataset.swap},'',t.href);openDetail(by[t.dataset.swap]);detail.querySelector('.d-body').scrollTop=0;detail.querySelector('.d-panel').scrollTop=0}
+  else{if(e.metaKey||e.ctrlKey||e.shiftKey)return;e.preventDefault();history.pushState({p:t.dataset.slug},'',t.href);pushed=true;openDetail(by[t.dataset.slug])}
+});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&shown)leaveDetail()});
+main.addEventListener('pointerover',function(e){if(e.pointerType!=='mouse')return;var c=e.target.closest('.card[data-slug]');if(c&&by[c.dataset.slug]&&!st.occ.amb)setAmb(by[c.dataset.slug].colors)});
+document.querySelectorAll('[data-tel]').forEach(function(a){a.href=tel});
+document.querySelectorAll('[data-phone]').forEach(function(a){a.textContent=SP.phone});
+ask();how();route(true);
+if('IntersectionObserver' in window)new IntersectionObserver(function(e){document.body.classList.toggle('scrolled',!e[0].isIntersecting)},{rootMargin:'-70px 0px 0px 0px'}).observe(document.querySelector('.hello'));
+})();
+</script>
+</body>
+</html>
