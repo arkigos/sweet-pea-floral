@@ -59,12 +59,12 @@ def page(p):
     rel = sorted([x for x in P if x is not p and x['tags'][0] == sec and not x['oos']],
                  key=lambda x: -(len(set(x['tags']) & set(p['tags'])) - abs(low(x) - low(p)) / 400))[:3]
     if sec == 'dance':
-        nxt = ['The order button takes you to this design in our store. Choose your size there.',
-               'Choose pickup and pick the day.',
+        nxt = ['Add it to your basket in the size you want.',
+               'Choose Friday or Saturday pickup.',
                'Pick it up at the shop Friday 10 to 4 or Saturday 10 to 2.']
     else:
-        nxt = ['The order button takes you to this design in our store. Choose your size there.',
-               'Choose delivery or pickup and pick the day. You can add something special if you like.',
+        nxt = ['Add it to your basket in the size you want.',
+               'Choose delivery or pickup, pick the day, and tell us what the card should say.',
                'We make it by hand, then deliver it or have it ready for you at the shop. ' + SP['policy']['substitution']]
     tiers = ''
     if len(p['tiers']) > 1:
@@ -75,8 +75,8 @@ def page(p):
     if p['oos']:
         acts = '<a class="btn" href="%s">%sCall to ask about this one</a>' % (TEL, ico('phone'))
     else:
-        acts = ('<a class="btn" href="%s" target="_blank" rel="noopener">Order this %s</a>'
-                '<a class="btn gl" href="%s">%sCall instead</a>') % (e(p['url']), ico('out'), TEL, ico('phone'))
+        acts = ('<button class="btn" type="button" data-add="%s">Add to basket</button>'
+                '<a class="btn gl" href="%s">%sCall instead</a>') % (p['slug'], TEL, ico('phone'))
     today = '' if sec == 'dance' else '<p class="today"><i class="dot" data-live="dot"></i><span data-live="deliv"></span></p>'
     relh = ''
     if rel:
@@ -117,6 +117,7 @@ def page(p):
       {tiers}
       {today}
       <div class="acts">{acts}</div>
+      {'' if p['oos'] else '<p class="fine">Or <a href="%s" target="_blank" rel="noopener">order it now on our current store</a>.</p>' % e(p['url'])}
       <p class="mono" style="margin-top:30px">What happens next</p>
       <ol class="next">{''.join('<li><span>%s</span></li>' % e(n) for n in nxt)}</ol>
       {relh}
@@ -129,7 +130,9 @@ def page(p):
   <a href="https://www.facebook.com/sweetpeafloralandgift" target="_blank" rel="noopener">Facebook</a>
   <span>Design prototype. Ordering opens the shop's current store.</span>
 </div></footer>
+<script src="../../assets/products.js"></script>
 <script src="../../assets/page.js"></script>
+<script src="../../assets/cart.js"></script>
 </body>
 </html>
 '''

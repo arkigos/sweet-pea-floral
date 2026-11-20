@@ -170,8 +170,8 @@ function fillDetail(p){
   var s=p.tags[0],d=defTier(p),stt=status();
   var rel=P.filter(function(x){return x!==p&&x.tags[0]===s&&!x.oos}).map(function(x){return [x.tags.filter(function(t){return has(p,t)}).length-Math.abs(low(x)-low(p))/400,x]}).sort(function(a,b){return b[0]-a[0]}).slice(0,3);
   var kick=[{everyday:'Everyday flowers',sympathy:'Sympathy & funeral',dance:'Dance flowers',plants:'Plants & gifts'}[s]].concat(p.tags.slice(1).filter(function(t){return LOOK[t]}).map(function(t){return LOOK[t]})).join(' · ');
-  var next=s==='dance'?['The order button takes you to this design in our store. Choose your size there.','Choose pickup and pick the day.','Pick it up at the shop Friday 10 to 4 or Saturday 10 to 2.']:
-    ['The order button takes you to this design in our store. Choose your size there.','Choose delivery or pickup and pick the day. You can add something special if you like.','We make it by hand, then deliver it or have it ready for you at the shop. '+SP.policy.substitution];
+  var next=s==='dance'?['Add it to your basket in the size you want.','Choose Friday or Saturday pickup.','Pick it up at the shop Friday 10 to 4 or Saturday 10 to 2.']:
+    ['Add it to your basket in the size you want.','Choose delivery or pickup, pick the day, and tell us what the card should say.','We make it by hand, then deliver it or have it ready for you at the shop. '+SP.policy.substitution];
   detail.innerHTML='<div class="d-panel"><button class="rnd d-x" type="button" data-close aria-label="Close">'+ico('x')+'</button>'+
   '<div class="d-img"><img src="'+IMG+p.img+'" alt="'+esc(p.name)+'"></div>'+
   '<div class="d-body"><p class="mono">'+esc(kick)+'</p><h2>'+esc(p.name)+'</h2>'+
@@ -179,7 +179,8 @@ function fillDetail(p){
   '<p class="desc">'+esc(p.desc)+'</p>'+
   (p.tiers.length>1?'<div class="pills" role="radiogroup" aria-label="Size">'+p.tiers.map(function(t,i){return '<label><input type="radio" name="tier" data-tier="'+esc(t[0])+'" value="'+t[1]+'"'+(i===d?' checked':'')+'><span>'+esc(t[0])+'<b>'+$(t[1])+'</b></span></label>'}).join('')+'</div>':'')+
   (s==='dance'?'':'<p class="today"><i class="dot'+(stt.sameDay?' on':'')+'"></i><span>'+esc(stt.deliv)+'</span></p>')+
-  '<div class="acts">'+(p.oos?'<a class="btn" href="'+tel+'">'+ico('phone')+'Call to ask about this one</a>':'<a class="btn" href="'+p.url+'" target="_blank" rel="noopener">Order this '+ico('out')+'</a><a class="btn gl" href="'+tel+'">'+ico('phone')+'Call instead</a>')+'</div>'+
+  '<div class="acts">'+(p.oos?'<a class="btn" href="'+tel+'">'+ico('phone')+'Call to ask about this one</a>':'<button class="btn" type="button" data-add="'+p.slug+'">Add to basket</button><a class="btn gl" href="'+tel+'">'+ico('phone')+'Call instead</a>')+'</div>'+
+  (p.oos?'':'<p class="fine">Or <a href="'+p.url+'" target="_blank" rel="noopener">order it now on our current store</a>.</p>')+
   '<p class="mono" style="margin-top:30px">What happens next</p><ol class="next">'+next.map(function(n){return '<li><span>'+esc(n)+'</span></li>'}).join('')+'</ol>'+
   (rel.length?'<p class="mono" style="margin-top:26px">More like this</p><div class="rel">'+rel.map(function(r){var x=r[1];return '<a href="'+ROOT+'p/'+x.slug+'/" data-swap="'+x.slug+'"><img loading="lazy" src="'+IMG+x.img+'" alt="">'+esc(x.name)+'<span>'+from(x)+'</span></a>'}).join('')+'</div>':'')+
   '</div></div>';
@@ -239,5 +240,6 @@ document.querySelectorAll('[data-phone]').forEach(function(a){a.textContent=SP.p
 ask();how();route(true);
 })();
 </script>
+<script src="assets/cart.js"></script>
 </body>
 </html>
