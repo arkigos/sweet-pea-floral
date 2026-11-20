@@ -173,9 +173,9 @@ footer a{border-bottom:1px dashed var(--pea)}
 ::view-transition-old(root),::view-transition-new(root){animation-duration:.3s}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition-duration:.01s!important}:root{scroll-behavior:auto}}
 
-/* her logo, remade without its white background */
-.word img{height:54px;width:auto;display:block}
-@media(max-width:640px){.word img{height:44px}}
+/* wordmark set in a script close to her logo's lettering */
+.word{font:400 1.85rem/1 "Lobster",var(--serif);font-style:normal;letter-spacing:.01em}
+@media(max-width:640px){.word{font-size:1.5rem}}
 
 /* a design's own page */
 .back{display:inline-block;margin-top:16px;font:600 1.35rem/1 var(--hand);color:var(--pea)}
