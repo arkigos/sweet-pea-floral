@@ -37,7 +37,7 @@
   <span>Sweet Pea Floral · 185 West Main Street, American Fork, UT 84003</span>
   <a href="https://www.instagram.com/sweet_pea_floral/" target="_blank" rel="noopener">Instagram</a>
   <a href="https://www.facebook.com/sweetpeafloralandgift" target="_blank" rel="noopener">Facebook</a>
-  <span>Design prototype. Ordering opens the shop's current store.</span>
+  <span>Design preview. Payment is not connected yet.</span>
 </div></footer>
 <div class="detail" id="detail" role="dialog" aria-modal="true" aria-label="Arrangement" hidden></div>
 
@@ -180,7 +180,6 @@ function fillDetail(p){
   (p.tiers.length>1?'<div class="pills" role="radiogroup" aria-label="Size">'+p.tiers.map(function(t,i){return '<label><input type="radio" name="tier" data-tier="'+esc(t[0])+'" value="'+t[1]+'"'+(i===d?' checked':'')+'><span>'+esc(t[0])+'<b>'+$(t[1])+'</b></span></label>'}).join('')+'</div>':'')+
   (s==='dance'?'':'<p class="today"><i class="dot'+(stt.sameDay?' on':'')+'"></i><span>'+esc(stt.deliv)+'</span></p>')+
   '<div class="acts">'+(p.oos?'<a class="btn" href="'+tel+'">'+ico('phone')+'Call to ask about this one</a>':'<button class="btn" type="button" data-add="'+p.slug+'">Add to basket</button><a class="btn gl" href="'+tel+'">'+ico('phone')+'Call instead</a>')+'</div>'+
-  (p.oos?'':'<p class="fine">Or <a href="'+p.url+'" target="_blank" rel="noopener">order it now on our current store</a>.</p>')+
   '<p class="mono" style="margin-top:30px">What happens next</p><ol class="next">'+next.map(function(n){return '<li><span>'+esc(n)+'</span></li>'}).join('')+'</ol>'+
   (rel.length?'<p class="mono" style="margin-top:26px">More like this</p><div class="rel">'+rel.map(function(r){var x=r[1];return '<a href="'+ROOT+'p/'+x.slug+'/" data-swap="'+x.slug+'"><img loading="lazy" src="'+IMG+x.img+'" alt="">'+esc(x.name)+'<span>'+from(x)+'</span></a>'}).join('')+'</div>':'')+
   '</div></div>';

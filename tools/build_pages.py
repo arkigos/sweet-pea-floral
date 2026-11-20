@@ -117,7 +117,6 @@ def page(p):
       {tiers}
       {today}
       <div class="acts">{acts}</div>
-      {'' if p['oos'] else '<p class="fine">Or <a href="%s" target="_blank" rel="noopener">order it now on our current store</a>.</p>' % e(p['url'])}
       <p class="mono" style="margin-top:30px">What happens next</p>
       <ol class="next">{''.join('<li><span>%s</span></li>' % e(n) for n in nxt)}</ol>
       {relh}
@@ -128,7 +127,7 @@ def page(p):
   <span>Sweet Pea Floral · {e(SP['address'])}</span>
   <a href="https://www.instagram.com/sweet_pea_floral/" target="_blank" rel="noopener">Instagram</a>
   <a href="https://www.facebook.com/sweetpeafloralandgift" target="_blank" rel="noopener">Facebook</a>
-  <span>Design prototype. Ordering opens the shop's current store.</span>
+  <span>Design preview. Payment is not connected yet.</span>
 </div></footer>
 <script src="../../assets/products.js"></script>
 <script src="../../assets/page.js"></script>

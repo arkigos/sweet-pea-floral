@@ -66,9 +66,7 @@ function foot(){
   var md=mode(),ds=dates(),d=ds.filter(function(x){return x.iso===st.date})[0],need=[];
   if(!md)need.push('delivery or pickup');else if(md==='delivery'&&!ZIPS[st.zip])need.push('a zip code we deliver to');
   if(!d)need.push('a day');
-  if(paying&&ready())return '<div class="bk-pay"><p class="mono">this is where payment goes</p><p><b>Payment is not connected yet.</b> This is a preview of the new way to order, so nothing has been ordered or sent.</p><p>To order today, use our current store or call.</p>'+
-    st.items.map(function(i){var p=by[i.slug];return '<a class="btn gl sm" href="'+p.url+'" target="_blank" rel="noopener">'+esc(p.name)+' on our current store '+ico('out')+'</a>'}).join('')+
-    '<a class="btn sm" href="'+TEL+'">'+ico('phone')+'Call '+SP.phone+'</a><button class="bk-link" type="button" data-bk-back>Back to the basket</button></div>';
+  if(paying&&ready())return '<div class="bk-pay"><p class="mono">this is where payment goes</p><p><b>Payment is not connected yet.</b> This is a preview, so nothing has been ordered or sent.</p><button class="bk-link" type="button" data-bk-back>Back to the basket</button></div>';
   return '<dl class="bk-sum"><div><dt>Flowers</dt><dd>'+$(subtotal())+'</dd></div>'+
     '<div><dt>'+(md==='pickup'?'Pickup':'Delivery')+'</dt><dd>'+(md==='pickup'?'at the shop, no charge':'fee added at payment')+'</dd></div>'+
     '<div><dt>Tax</dt><dd>added at payment</dd></div></dl>'+
