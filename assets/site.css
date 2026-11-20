@@ -173,13 +173,9 @@ footer a{border-bottom:1px dashed var(--pea)}
 ::view-transition-old(root),::view-transition-new(root){animation-duration:.3s}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition-duration:.01s!important}:root{scroll-behavior:auto}}
 
-/* her logo */
-.word img{height:58px;width:auto;mix-blend-mode:multiply;filter:brightness(1.08) contrast(1.2);display:block}
-body.home .top .word{opacity:0;pointer-events:none;transition:opacity .3s}
-body.home.scrolled .top .word{opacity:1;pointer-events:auto}
-.logo{width:clamp(220px,25vw,330px);height:auto;mix-blend-mode:multiply;filter:brightness(1.08) contrast(1.2);margin:4px auto 6px}
-.hello h1{font-size:clamp(1.25rem,2.1vw,1.8rem);max-width:26em;margin-inline:auto;color:var(--mut)}
-@media(max-width:640px){.word img{height:46px}}
+/* her logo, remade without its white background */
+.word img{height:54px;width:auto;display:block}
+@media(max-width:640px){.word img{height:44px}}
 
 /* a design's own page */
 .back{display:inline-block;margin-top:16px;font:600 1.35rem/1 var(--hand);color:var(--pea)}

@@ -101,7 +101,7 @@ def page(p):
 </head>
 <body>
 <header class="top wrap">
-  <a class="word" href="../../"><img src="../../img/logo.webp" alt="Sweet Pea Floral" width="350" height="205"></a>
+  <a class="word" href="../../"><img src="../../img/logo.png" alt="Sweet Pea Floral"></a>
   <a class="live" href="../../#visit"><i class="dot" data-live="dot"></i><span><span class="pre" data-live="pre"></span><span data-live="open">American Fork</span></span></a>
   <a class="btn sm" href="{TEL}" aria-label="Call the shop">{ico('phone')}<span>{SP['phone']}</span></a>
 </header>
